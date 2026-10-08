@@ -12,7 +12,6 @@ GKD 订阅即可使用
 - 已适配 6 个应用，
 - 查看 [适配 APP 列表](./dist/README.md)
 
-
 ## 目录结构
 
 - 订阅详情 [./src/subscription.ts](./src/subscription.ts)
