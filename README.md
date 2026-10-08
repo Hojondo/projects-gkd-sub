@@ -1,49 +1,17 @@
-# subscription-template
+# GKD-subscription-hojondo
 
-GKD 订阅模板, 此仓库方便您直接构建自己订阅, 点击右上角 [Use this template](https://github.com/new?template_name=subscription-template&template_owner=gkd-kit) 即可使用
+GKD 订阅即可使用
 
-## 配置环境
+## 声明
 
-请安装最新版 nodejs 和 pnpm 运行, 以及使用 vscode 打开项目
+**自用**
 
-> [!IMPORTANT]
-> 选择器需要使用 nodejs@22 的 WasmGc 来校验 Java/Kotlin 正则表达式, 确保使用 nodejs>=22
+## INFO
 
-- nodejs>=**22** <https://nodejs.org/en/download>
-- pnpm>=9 <https://pnpm.io/zh/installation>
-- vscode <https://code.visualstudio.com>
+- 当前版本: v2
+- 已适配 6 个应用，
+- 查看 [适配 APP 列表](./dist/README.md)
 
-安装好后使用模板, 假设您刚刚使用 `Use this template` 创建的仓库是 `https://github.com/username/subscription`
-
-接下来下载并初始化环境
-
-```shell
-git clone https://github.com/username/subscription
-cd subscription
-pnpm install
-```
-
-如果因为网络问题安装失败, 将上面的 `pnpm install` 换成下面命令使用 阿里镜像源 重新安装即可
-
-```sh
-pnpm install --registry=https://registry.npmmirror.com
-```
-
-![image](https://e.gkd.li/33bb6379-2fae-4139-abc3-6250a287ad84)
-
-至此环境已在 `subscription` 目录下初始化完毕, 使用 vscode 打开目录即可开始开发
-
-接下来下面所有的示例链接都基于 `username/subscription`, 请自行替换后打开
-
-`pnpm install` 用于安装依赖, 如果您的 [./package.json](./package.json) 发生变化, 则需要再次运行 `pnpm install`
-
----
-
-如果您无法初始化 nodejs 环境, 那可以直接使用 github 网页编辑文件后在线提交, 点击下面链接即可在线编辑
-
-<https://github.com/username/subscription/edit/main/src/subscription.ts>
-
-![image](https://e.gkd.li/bb539a50-cbdb-4fec-8a93-4a9c5d067de0)
 
 ## 目录结构
 

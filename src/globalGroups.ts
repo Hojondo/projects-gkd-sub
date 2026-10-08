@@ -1,3 +1,91 @@
 import { defineGkdGlobalGroups } from '@gkd-kit/define';
+import * as appList from './globalDefaultApps';
 
-export default defineGkdGlobalGroups([]);
+export const OPEN_AD_ORDER = -100; // 开屏广告
+
+export default defineGkdGlobalGroups([
+  {
+    key: 0,
+    name: '全局-开屏广告',
+    desc: '快杀 应用打开时的开屏广告',
+    order: OPEN_AD_ORDER,
+    fastQuery: true,
+    matchTime: 10000,
+    actionMaximum: 2,
+    resetMatch: 'app',
+    forcedTime: 10000,
+    actionCdKey: 0,
+    actionMaximumKey: 0,
+    priorityTime: 10000,
+    disableIfAppGroupMatch: '开屏广告',
+    rules: [
+      {
+        key: 0,
+        // 防止误触
+        excludeMatches:
+          '([text*="搜索" || text="历史记录" || text$="在搜"][text.length>3 && text.length<7][visibleToUser=true]) || ([text="Submit" || text*="阅读并同意" || text="书签" || text="NEXT"][visibleToUser=true]) || ([text$="设置" || text$="选好了" || text^="下一步" || text^="完成" || text*="跳过片"][text.length<10][visibleToUser=true]) || ([text^="选择"][text*="偏好" || text*="兴趣" || text*="喜好"][text.length<10][visibleToUser=true])',
+        anyMatches: [
+          '[text*="跳过"][text.length<10][width<500 && height<300][visibleToUser=true]',
+          '@[name$="View" || name$="LinearLayout"][clickable=true][childCount<2][width<300 && height<200] - [text="互动广告"][visibleToUser=true]',
+          '[childCount=0][visibleToUser=true][width<500 && height<300][(text.length<10 && (text*="跳过" || text*="跳 过" || text*="跳過" || text~="(?is).*skip.*") && text!*="视频" && text!*="片头" && text!*="片尾") || (vid~="(?is).*skip.*" && vid!~="(?is).*video.*" && vid!~="(?is).*head.*" && vid!~="(?is).*tail.*" && !(text="帮助") && !(text="取消") && !(text*="退出")) || id$="tt_splash_skip_btn" || (desc.length<10 && (desc*="跳过" || desc*="跳過" || desc~="(?is).*skip.*"))]',
+        ],
+        snapshotUrls: [
+          // 互动开屏广告
+          'https://i.gkd.li/i/21617612',
+          'https://i.gkd.li/i/23557410',
+
+          // text*="跳 过"
+          'https://i.gkd.li/i/13421452',
+
+          'https://i.gkd.li/i/24097095', // width<500
+          'https://i.gkd.li/i/24766641', // height<300
+
+          // 避免被excludeMatches匹配
+          'https://i.gkd.li/i/24330969',
+          'https://i.gkd.li/i/24541384',
+          'https://i.gkd.li/i/24588777',
+        ],
+        excludeSnapshotUrls: [
+          // 避免误触
+          'https://i.gkd.li/i/15079224', // !(text*="退出")
+          'https://i.gkd.li/i/17108010', // !(text="帮助")
+          'https://i.gkd.li/i/18265000', // !(text="取消")
+          'https://i.gkd.li/i/19952277', // text="Submit"
+          'https://i.gkd.li/i/20946730', // text$="设置"
+          'https://i.gkd.li/i/20949002', // vid!~="(?is).*video.*"
+          'https://i.gkd.li/i/21617520', // text!*="视频"
+          'https://i.gkd.li/i/22634992', // text$="登录" text*="阅读并同意"
+          'https://i.gkd.li/i/23051921', // [text^="选择"]
+          'https://i.gkd.li/i/23742770', // [text^="选择"]
+          'https://i.gkd.li/i/23743049', // [text^="选择"]
+          'https://i.gkd.li/i/23052289', // text="选好了"
+          'https://i.gkd.li/i/23122415', // text="书签"
+          'https://i.gkd.li/i/23225609', // text="NEXT"
+          'https://i.gkd.li/i/23741801', // text^="下一步" text$="设置"
+          'https://i.gkd.li/i/23741779', // text^="完成" text$="设置"
+          'https://i.gkd.li/i/25039297', // text*="跳过片"、text!*="片头"、text!*="片尾"、vid!~="(?is).*head.*"、vid!~="(?is).*tail.*"
+        ],
+      },
+      {
+        key: 1, // 字节SDK
+        anyMatches: [
+          '@View[text=null][clickable=true][childCount=0][visibleToUser=true][width<200&&height<200] +(1,2) TextView[index=parent.childCount.minus(1)][childCount=0] <n FrameLayout[childCount>2][text=null][desc=null] >(n+6) [text*="第三方应用" || text*="扭动手机" || text*="点击或上滑" || text*="省钱好物" || text*="扭一扭"][visibleToUser=true]',
+          'FrameLayout > FrameLayout[childCount>2][text=null][desc=null] > @View[text=null][clickable=true][childCount=0][visibleToUser=true][width<200&&height<200] +(1,2) TextView[index=parent.childCount.minus(1)][childCount=0][visibleToUser=true]',
+        ],
+        snapshotUrls: [
+          'https://i.gkd.li/i/19685971', // +(1,2)
+          'https://i.gkd.li/i/19701216', // +(1,2)
+          'https://i.gkd.li/i/20262130',
+          'https://i.gkd.li/i/20768349',
+          'https://i.gkd.li/i/20883248', // >(n+6)
+          'https://i.gkd.li/i/23549504', // text*="扭一扭"
+        ],
+      },
+    ],
+    apps: [...appList.openAdBlackListAppIDs]
+      .map((id) => ({ id, enable: false }))
+      .concat(
+        [...appList.openAdWhiteListAppIDs].map((id) => ({ id, enable: true })),
+      ),
+  },
+]);
