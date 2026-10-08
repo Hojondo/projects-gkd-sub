@@ -6,12 +6,14 @@ GKD 订阅即可使用
 
 **自用**
 
+- `https://fastly.jsdelivr.net/gh/Hojondo/projects-gkd-sub@main/dist/gkd.json5`
+- `https://raw.githubusercontent.com/Hojondo/projects-gkd-sub/refs/heads/main/dist/gkd.json5`
+
 ## INFO
 
 - 当前版本: v2
 - 已适配 6 个应用，
 - 查看 [适配 APP 列表](./dist/README.md)
-
 
 ## 目录结构
 
