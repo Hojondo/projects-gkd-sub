@@ -1,9 +1,16 @@
 name: build_release
 
-on: push
+on:
+  workflow_run:
+    workflows: [check_fix_push]
+    types: [completed]
+    branches: [main]
 
 jobs:
   build_release:
+    if: >-
+      github.event.workflow_run.conclusion == 'success' &&
+      github.event.workflow_run.head_commit.message != 'chore(actions): check_format_lint'
     runs-on: ubuntu-latest
     permissions:
       contents: write
