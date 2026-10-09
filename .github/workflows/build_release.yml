@@ -1,6 +1,8 @@
 name: build_release
 
-on: workflow_dispatch
+on: push:
+  branches:
+    - main
 
 jobs:
   build_release:
