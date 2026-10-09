@@ -39,27 +39,27 @@ export default defineGkdApp({
         },
       ],
     },
-    {
-      key: 10,
-      name: '功能类-忽略升级',
-      desc: '应用升级界面-自动点击忽略',
-      fastQuery: true,
-      activityIds: 'com.xiaomi.market.ui.UpdateListActivity',
-      rules: [
-        {
-          key: 1,
-          excludeMatches: '[text="忽略本次"][visibleToUser=true]',
-          matches: '[vid="expand_button"][visibleToUser=true]',
-          snapshotUrls: 'https://i.gkd.li/i/14931577',
-        },
-        {
-          preKeys: [1],
-          key: 2,
-          matches: '[text="忽略本次"][visibleToUser=true]',
-          snapshotUrls: 'https://i.gkd.li/i/14931578',
-        },
-      ],
-    },
+    // {
+    //   key: 10,
+    //   name: '功能类-忽略升级',
+    //   desc: '应用升级界面-自动点击忽略',
+    //   fastQuery: true,
+    //   activityIds: 'com.xiaomi.market.ui.UpdateListActivity',
+    //   rules: [
+    //     {
+    //       key: 1,
+    //       excludeMatches: '[text="忽略本次"][visibleToUser=true]',
+    //       matches: '[vid="expand_button"][visibleToUser=true]',
+    //       snapshotUrls: 'https://i.gkd.li/i/14931577',
+    //     },
+    //     {
+    //       preKeys: [1],
+    //       key: 2,
+    //       matches: '[text="忽略本次"][visibleToUser=true]',
+    //       snapshotUrls: 'https://i.gkd.li/i/14931578',
+    //     },
+    //   ],
+    // },
     {
       key: 11,
       name: '权限提示-通知权限',
